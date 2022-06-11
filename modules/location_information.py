@@ -12,16 +12,16 @@ class Geocoding:
         self.user_location = "%20".join(geo.split())
         self.latitude = None
         self.longitude = None
-        print(self.user_location)
+        #rint(self.user_location)
         #positionstack geocoding API call
         positionstack_token = modules.token_reader.tokens()['positionstack']
-        print(positionstack_token)
+        #print(positionstack_token)
         request = f'http://api.positionstack.com/v1/forward?access_key={positionstack_token}&query={self.user_location}'
         response = requests.get(request)
         if response.status_code == 200 or response.status_code == 201:
             data = response.json()
-            print(data)
-            self.latitude = data['data'][0]['longitude']
+            #print(data)
+            self.latitude = data['data'][0]['latitude']
             self.longitude = data['data'][0]['longitude']
         elif response.status_code == 404: 
             raise Exception('404, PositionStack API not accessible')
