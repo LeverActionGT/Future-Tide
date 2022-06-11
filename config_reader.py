@@ -14,6 +14,6 @@ def configs():
 #access configs by using:
 #
 #import config_reader
-#config_reader.configs('key')
+#x = config_reader.configs()['key']
 #
 configs()
