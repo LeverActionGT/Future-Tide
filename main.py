@@ -1,3 +1,5 @@
+#Sahil
+
 print(' \nLoading...\n')
 
 #libraries
@@ -8,7 +10,6 @@ import sys
 
 #modules
 import modules.token_reader as token_reader
-import modules.RishitTesting as rishittesting
 
 #token setup
 discord_token = token_reader.tokens()['discord']

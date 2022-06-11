@@ -1,5 +1,8 @@
+#Rishit
+
 import requests
 import pandas as pd
+import config_reader
 
 class LocationInformation:
     def __init__(self, userLocation):
@@ -7,7 +10,8 @@ class LocationInformation:
         self.longitude = None
         self.latitude = None
     def getLocation(self):
-        key = '98a9d61a363c46bbd1f387f0b9f334ad'
+
+        positionstack_token = config_reader.configs()['positionstack']
         request = f'http://api.positionstack.com/v1/forward?access_key={key}&query={self.userLocation}'
         response = requests.get(request)
         if response.status_code == 200 | response.status_code == 201:
