@@ -2,7 +2,7 @@
 
 import requests
 import pandas as pd
-import config_reader
+import modules.token_reader
 
 class Geocoding:
     def __init__(self, user_location): #user_location is string address
@@ -10,7 +10,7 @@ class Geocoding:
         self.user_location = user_location
 
         #positionstack geocoding API call
-        positionstack_token = config_reader.configs()['positionstack']
+        positionstack_token = modules.token_reader.tokens()['positionstack']
         request = f'http://api.positionstack.com/v1/forward?access_key={positionstack_token}&query={self.user_location}'
         response = requests.get(request)
         if response.status_code == 200 | response.status_code == 201:
