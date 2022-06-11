@@ -17,4 +17,4 @@ class TemperatureModel:
         data.plot(y=['tavg', 'tmin', 'tmax'])
         plt.show()
 
-tm = TemperatureModel(-33.854667, 151.225778, 3.3)
+tm = TemperatureModel(-33.854667, 151.225778, 24)
