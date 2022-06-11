@@ -6,7 +6,7 @@ def tokens():
     crd = sys.path[0]
 
     #opens tokes.ini as a evaluated dict
-    with open (os.path.join(crd, '../tokens.ini'), 'r') as tokenfile:
+    with open (os.path.join(crd, 'tokens.ini'), 'r') as tokenfile:
         tokenlist = tokenfile.readlines()
         tokens = eval(''.join(tokenlist))
     return tokens
