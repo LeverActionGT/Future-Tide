@@ -39,8 +39,9 @@ class Geocoding:
 
         start = datetime(2017, 1, 1)
         end = datetime(2019, 12, 31)
-        testLocation = Point(self.latitude, self.longitude)
-        data = Monthly(testLocation, start, end)
+        test_location = Point(self.latitude, self.longitude)
+        data = Monthly(test_location, start, end)
         data = data.fetch()
-        avgTemp = sum(data['tavg'])/len(data['tavg'])
-        self.avgTemp = avgTemp
+        print(data)
+        avg_temp = sum(data['tavg'])/len(data['tavg'])
+        self.avg_temp = avg_temp

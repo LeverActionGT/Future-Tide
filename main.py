@@ -52,8 +52,9 @@ async def geocode(inter: nextcord.Interaction, address:str):
     lon = location.longitude
     elev = location.elevation
     label = location.label
-    print(location)
-    msg = f'**{label}**\nLatitude: {lat}\nLongitude: {lon}\nElevation: {elev}'
+    average_temp = location.avg_temp
+    
+    msg = f'**{label}**\nLatitude: {lat}\nLongitude: {lon}\nElevation: {elev}\nAverage Temp:{average_temp}'
     await inter.response.send_message(msg)
 
 client.run(discord_token)
