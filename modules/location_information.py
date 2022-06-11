@@ -5,14 +5,12 @@ import pandas as pd
 import config_reader
 
 class LocationInformation:
-    def __init__(self, userLocation):
-        self.userLocation = userLocation
-        self.longitude = None
-        self.latitude = None
+    def __init__(self, user_location): #user_location is string address
+        self.user_location = user_location
 
     def getLocation(self):
         positionstack_token = config_reader.configs()['positionstack']
-        request = f'http://api.positionstack.com/v1/forward?access_key={positionstack_token}&query={self.userLocation}'
+        request = f'http://api.positionstack.com/v1/forward?access_key={positionstack_token}&query={self.user_location}'
         response = requests.get(request)
         if response.status_code == 200 | response.status_code == 201:
             data = response.json()
