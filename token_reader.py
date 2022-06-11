@@ -14,6 +14,6 @@ def tokens():
 #access tokens by using:
 #
 #import token_reader
-#token_reader.configs['key']
+#token_reader.tokens['key']
 #
 tokens()
