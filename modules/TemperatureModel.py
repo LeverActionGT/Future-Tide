@@ -18,9 +18,9 @@ class TemperatureModel:
         #data = data.fetch()
         #data.plot(y=['tavg'])
         #plt.show()
-        df = pd.read_csv('Australia.csv.csv')
-        poly = PolynomialFeatures(degree=1)
-        x = np.arange(1, 625, 1)
+        df = pd.read_csv('Brest.csv')
+        poly = PolynomialFeatures(degree=2)
+        x = np.arange(1, 624, 1)
         y = df['tavg']
         print(len(x))
         print(len(y))
@@ -33,8 +33,8 @@ class TemperatureModel:
         poly_reg_model = LinearRegression()
         poly_reg_model.fit(poly_features, y)
         y_predicted = poly_reg_model.predict(poly_features)
-        plt.scatter(x, y)
-        plt.plot(x, y_predicted, c="red")
+        plt.scatter(poly_features, y)
+        plt.plot(poly_features, y_predicted, c="red")
         plt.show()
 
 tm = TemperatureModel(48.404244, -4.484974)
