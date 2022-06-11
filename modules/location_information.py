@@ -23,6 +23,7 @@ class Geocoding:
             #print(data)
             self.latitude = data['data'][0]['latitude']
             self.longitude = data['data'][0]['longitude']
+            self.label = data['data'][0]['label']
         elif response.status_code == 404: 
             raise Exception('404, PositionStack API not accessible')
 
