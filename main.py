@@ -80,5 +80,6 @@ async def underwater(inter: nextcord.Interaction, address:str):
     years = sdo*z
 
     msg = f'**{label}**\nWill be underwater in {years} years'
+    await inter.response.send_message(msg)
 
 client.run(discord_token)
