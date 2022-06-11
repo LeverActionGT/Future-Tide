@@ -3,6 +3,7 @@ import re
 
 import requests
 import pandas as pd
+import numpy as np
 import modules.token_reader
 from meteostat import Point, Monthly
 from datetime import datetime

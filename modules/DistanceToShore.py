@@ -5,7 +5,7 @@ import requests
 url = "https://distance-to-coast-by-point1.p.rapidapi.com/distance-to-coast-point"
 
 class shore_distance:
-    def __init__(latitude, longitude):
+    def __init__(self, latitude, longitude):
         payload = {
             "lat": latitude,
             "lines": False,
@@ -13,7 +13,7 @@ class shore_distance:
         }
         headers = {
             "content-type": "application/json",
-            "X-RapidAPI-Key": "c494f7409cmsha8f0c89234852cbp1657d2jsndd760848d916",
+            "X-RapidAPI-Key": '172ba95d39mshd35ec8407693336p15ca25jsnfe5ce8149ffc',
             "X-RapidAPI-Host": "distance-to-coast-by-point1.p.rapidapi.com"
         }
 
@@ -21,3 +21,4 @@ class shore_distance:
         print(response.text)
         responsedata = response.json()
         print(responsedata["nearest_coastline"][0]["dist_meters"])
+        self.output = responsedata["nearest_coastline"][0]["dist_meters"]

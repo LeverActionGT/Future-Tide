@@ -5,6 +5,7 @@ print(' \nLoading...\n')
 #libraries
 from email import message
 from pydoc import describe
+from re import A
 import nextcord
 import datetime as dt
 import numpy as np
@@ -15,6 +16,7 @@ from pandas import describe_option
 #modules
 import modules.token_reader as token_reader
 import modules.location_information as location_information
+import modules.DistanceToShore as distance_to_shore
 
 #token setup
 discord_token = token_reader.tokens()['discord']
@@ -53,8 +55,30 @@ async def geocode(inter: nextcord.Interaction, address:str):
     elev = location.elevation
     label = location.label
     average_temp = location.avg_temp
-    
+
     msg = f'**{label}**\nLatitude: {lat}\nLongitude: {lon}\nElevation: {elev}\nAverage Temp:{average_temp}'
     await inter.response.send_message(msg)
+
+
+@client.slash_command(name='underwater', description='Determines how long until this locaton is underwater')
+async def underwater(inter: nextcord.Interaction, address:str):
+    location = location_information.Geocoding(address)
+    x = location.elevation
+    y = location.avg_temp
+    label = location.label
+
+    fx = (-4.96*10**(-10)) + (2.08*10**8)*x - 9383028*x**2 + 402*x**3  -0.264*x**4 + 1.11*10**(-4)*x**5 - (2.91*10**(-8))*x**6 + (4.36*10**(-12))*x**7 - (2.86*10**(-16))*x**8
+    fy = 208 - 0.0232*x + (1.01+10**(-6))*x**2 - (1.91*10**(-11))*x**3 + (1.35*10**(-16))*x**4
+
+    a = (1.43312*10**(-16))
+    b = (0.00144564)
+
+    z = a*fx+ b*fy
+
+    shoredist = distance_to_shore.shore_distance(location.latitude, location.longitude)
+    sdo = shoredist.output
+    years = sdo*z
+
+    msg = f'**{label}**\nWill be underwater in {years} years'
 
 client.run(discord_token)
