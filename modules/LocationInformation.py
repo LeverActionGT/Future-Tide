@@ -10,10 +10,14 @@ class LocationInformation:
         key = '98a9d61a363c46bbd1f387f0b9f334ad'
         request = f'http://api.positionstack.com/v1/forward?access_key={key}&query={self.userLocation}'
         response = requests.get(request)
-        data = response.json()
-        self.latitude = data['data'][0]['latitude']
-        self.longitude = data['data'][0]['longitude']
-        return [self.latitude, self.longitude]
+        if response.status_code == 200 | response.status_code == 201:
+            data = response.json()
+            self.latitude = data['data'][0]['latitude']
+            self.longitude = data['data'][0]['longitude']
+            return [self.latitude, self.longitude]
+        elif response.status_code == 404:
+            return("error")
+
 
     def getSeaElevation(self):
         request = f'https://api.open-elevation.com/api/v1/lookup?locations={self.latitude},{self.longitude}'
