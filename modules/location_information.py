@@ -4,6 +4,8 @@ import re
 import requests
 import pandas as pd
 import modules.token_reader
+from meteostat import Point, Monthly
+from datetime import datetime
 
 class Geocoding:
     def __init__(self, user_location): #user_location is string address
@@ -34,3 +36,11 @@ class Geocoding:
             self.elevation = pd.json_normalize(r.json(), 'results')['elevation'].values[0]
         else:
             self.elevation = None
+
+        start = datetime(2017, 1, 1)
+        end = datetime(2019, 12, 31)
+        testLocation = Point(self.latitude, self.longitude)
+        data = Monthly(testLocation, start, end)
+        data = data.fetch()
+        avgTemp = sum(data['tavg'])/len(data['tavg'])
+        self.avgTemp = avgTemp
