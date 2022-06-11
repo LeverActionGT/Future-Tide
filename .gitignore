@@ -1,3 +1,9 @@
+# Montyhax
+tokens.ini
+config.ini
+test.py
+logs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
